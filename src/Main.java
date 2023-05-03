@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,5 +47,14 @@ public class Main {
         }
         reader.close();
         return contacts;
+    }
+    public static void saveContacts(List<Contact>contacts)throws IOException{
+        BufferedWriter writer = new BufferedWriter(new FileWriter(TELEPHONE_BOOK_TXT));
+        for (Contact contact: contacts){
+            String line = contact.getFirstName()+","+ contact.getLastName()+" "+contact.getPhone();
+            writer.write(line);
+            writer.newLine();
+        }
+        writer.close();
     }
 }
